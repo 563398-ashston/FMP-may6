@@ -19,12 +19,6 @@ public class PlayerAttack : MonoBehaviour
     {
         anim.Play("attack_anim");
 
-
-
-
-
-
-        
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPoint.transform.position, radius, enemies);
 
         foreach (Collider2D enemyGameObject in enemy)

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,41 +8,47 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     Animator anim;
-    private HealthScript playerHealth;
+
     public Transform resetPoint;
+
     private bool isFacingRight = true;
     private float horizontal;
 
     [Header("player values")]
     [SerializeField] float speed = 8f;
     [SerializeField] float jumpingPower = 16;
-    public int jumpsLeft;
     [SerializeField] float maxVertSpeed;
+
+    public int jumpsLeft;
 
     [Header("dashing values")]
     public float dashForce = 30f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
+
     public bool isDashing;
     private float dashTimer;
     private float cooldownTimer;
     private bool hasDashedInAir;
 
     [Header("attack values")]
-    public bool isAttacking;
     public int attackDamage = 50;
-    public float attackRange = 0.5f;
     public float attackrate = 2f;
-    private float attackTimer;
     [SerializeField] float attackDuration = 0.2f;
-    //private float nextAttackTime = 0f;
-    public Transform attackPoint;
+    [SerializeField] float slashDuration = 1f;
+
+    private float attackTimer;
+    public GameObject slashEffect;
+    public bool isAttacking;
+
     public LayerMask enemyLayers;
+
+    public PolygonCollider2D attackHitbox;
 
     private int maxJumps = 2;
     private float originalGravity;
 
-    //input actions
+   
     InputAction moveAction;
     InputAction jumpAction;
     InputAction dashAction;
@@ -68,6 +73,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         dashAction = InputSystem.actions.FindAction("Dash");
@@ -75,10 +81,13 @@ public class PlayerController : MonoBehaviour
 
         jumpsLeft = maxJumps;
         originalGravity = rb.gravityScale;
+
+        // Disable attack hitbox at start
+        attackHitbox.enabled = false;
     }
 
-    private void OnEnable() => dashAction.Enable();
-    private void OnDisable() => dashAction.Disable();
+    //private void OnEnable() => dashAction.Enable();
+    //private void OnDisable() => dashAction.Disable();
 
     private void FixedUpdate()
     {
@@ -91,15 +100,22 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Spike")
+        if (isAttacking)
         {
-            collision.gameObject.GetComponent<PlayerController>().resetPoint = resetPoint;
-            //collision.gameObject.GetComponent<HealthScript>().ResetHealth();
-            //print("reset point is " + resetPoint);
+            if (((1 << collision.gameObject.layer) & enemyLayers) != 0)
+            {
+                Debug.Log("we hit " + collision.name);
+
+                DoEnemyDamage(collision.gameObject);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            collision.gameObject
+                .GetComponent<PlayerController>().resetPoint = resetPoint;
         }
     }
-    
-
 
     private void Update()
     {
@@ -138,7 +154,7 @@ public class PlayerController : MonoBehaviour
         {
             currentAnim = PlayerAnimation.Attacking;
         }
-        else if (!IsGrounded() && rb.linearVelocity.y > 0.1f && jumpsLeft == 0)
+        else if (!IsGrounded() &&rb.linearVelocity.y > 0.1f &&jumpsLeft == 0)
         {
             currentAnim = PlayerAnimation.DoubleJumping;
         }
@@ -159,7 +175,6 @@ public class PlayerController : MonoBehaviour
             currentAnim = PlayerAnimation.Idle;
         }
 
-      
         anim.Play(GetAnimationName(currentAnim));
     }
 
@@ -168,19 +183,26 @@ public class PlayerController : MonoBehaviour
         switch (animType)
         {
             case PlayerAnimation.Idle: return "idle_anim";
+
             case PlayerAnimation.Walking: return "walking_anim";
+
             case PlayerAnimation.Jumping: return "jumping_anim";
+
             case PlayerAnimation.Falling: return "falling_anim";
+
             case PlayerAnimation.Dashing: return "dash_anim";
+
             case PlayerAnimation.DoubleJumping: return "double_jump_anim";
+
             case PlayerAnimation.Attacking: return "attack_anim";
-            default: return "idle anim";
+
+            default: return "idle_anim";
         }
     }
 
     private void FlipCheck()
     {
-        if (isFacingRight && horizontal > 0f || !isFacingRight && horizontal < 0f)
+        if (isFacingRight && horizontal > 0f ||!isFacingRight && horizontal < 0f)
         {
             Flip();
         }
@@ -196,7 +218,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position,0.3f,groundLayer);
     }
 
     public void Move()
@@ -204,26 +226,33 @@ public class PlayerController : MonoBehaviour
         if (isDashing) return;
 
         horizontal = moveAction.ReadValue<Vector2>().x;
+
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
     }
 
     public void Attack()
     {
         isAttacking = true;
+
         attackTimer = attackDuration;
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
-            attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("we hit " + enemy.name);
-
-            DoEnemyDamage(enemy.gameObject);
-           
-        }
+        StartCoroutine(ShowSlash());
+        StartCoroutine(EnableAttackHitbox());
     }
 
+    IEnumerator EnableAttackHitbox()
+    {
+        attackHitbox.enabled = true;
+        yield return new WaitForSeconds(attackDuration);
+        attackHitbox.enabled = false;
+    }
+
+    IEnumerator ShowSlash()
+    {
+        slashEffect.SetActive(true);
+        yield return new WaitForSeconds(slashDuration);
+        slashEffect.SetActive(false);
+    }
 
     void DoEnemyDamage(GameObject enemy)
     {
@@ -235,38 +264,27 @@ public class PlayerController : MonoBehaviour
         {
             enemy.GetComponent<EnemyControllerTwo>().TakeDamage(attackDamage);
         }
-
-
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        if(attackPoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.transform.position, attackRange);
     }
 
     public void Jump()
     {
-
         if (isDashing) return;
 
-        //print("vy=" + rb.linearVelocity.y + "  grounded=" + IsGrounded() );
-        if (IsGrounded() && jumpAction.WasPressedThisFrame() )
+        if (IsGrounded() &&
+            jumpAction.WasPressedThisFrame())
         {
             jumpsLeft = maxJumps;
-            //print("reset jumps to " + maxJumps);
         }
 
-        if (jumpAction.WasPressedThisFrame() && jumpsLeft > 0)
+        if (jumpAction.WasPressedThisFrame() &&
+            jumpsLeft > 0)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            rb.linearVelocity =new Vector2(rb.linearVelocity.x,jumpingPower);
             jumpsLeft--;
         }
 
-        if (!jumpAction.IsPressed() && rb.linearVelocity.y > 0f)
+        if (!jumpAction.IsPressed() &&
+            rb.linearVelocity.y > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
@@ -275,7 +293,6 @@ public class PlayerController : MonoBehaviour
     public void Dash()
     {
         cooldownTimer -= Time.deltaTime;
-
         bool grounded = IsGrounded();
 
         if (grounded)
@@ -301,6 +318,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
@@ -309,8 +327,8 @@ public class PlayerController : MonoBehaviour
             {
                 isDashing = false;
                 rb.gravityScale = originalGravity;
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                
+
+                rb.linearVelocity =new Vector2(0f,rb.linearVelocity.y);
             }
         }
     }
@@ -321,11 +339,9 @@ public class PlayerController : MonoBehaviour
         dashTimer = dashTime;
         cooldownTimer = dashCooldown;
 
-        float direction = Mathf.Sign(transform.localScale.x);
+        float direction =Mathf.Sign(transform.localScale.x);
 
         rb.gravityScale = 0f;
-        rb.linearVelocity = new Vector2(-direction * dashForce, 0f);
-
-       //if (isAttacking)
+        rb.linearVelocity =new Vector2(-direction * dashForce,0f);
     }
 }
