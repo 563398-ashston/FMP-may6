@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour
     public float attackrate = 2f;
     [SerializeField] float attackDuration = 0.2f;
     [SerializeField] float slashDuration = 1f;
+    [SerializeField] float attackCooldown = 0.4f;
 
+    private float nextAttackTime;
     private float attackTimer;
     public GameObject slashEffect;
     public bool isAttacking;
@@ -112,8 +114,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Spike"))
         {
-            collision.gameObject
-                .GetComponent<PlayerController>().resetPoint = resetPoint;
+            collision.gameObject.GetComponent<PlayerController>().resetPoint = resetPoint;
         }
     }
 
@@ -133,8 +134,9 @@ public class PlayerController : MonoBehaviour
         Move();
         Dash();
 
-        if (attackAction.WasPressedThisFrame())
+        if (attackAction.WasPressedThisFrame() && Time.time >= nextAttackTime)
         {
+            nextAttackTime = Time.time + attackCooldown;
             Attack();
         }
 
@@ -263,6 +265,10 @@ public class PlayerController : MonoBehaviour
         if (enemy.tag == "enemy2")
         {
             enemy.GetComponent<EnemyControllerTwo>().TakeDamage(attackDamage);
+        }
+        if (enemy.tag == "boss")
+        {
+            enemy.GetComponent<BossController>().TakeDamage(attackDamage);
         }
     }
 

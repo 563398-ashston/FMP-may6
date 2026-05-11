@@ -37,7 +37,7 @@ public class HealthScript : MonoBehaviour
         
         if (health <= 0)
         {
-            Destroy(gameObject, 4f);
+            Destroy(gameObject, 0f);
         }
         
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2764552357546977095}
   - component: {fileID: 6709023019385658102}
-  - component: {fileID: 3404158003503956308}
+  - component: {fileID: 1173133992891300197}
   - component: {fileID: 779360603082932944}
   - component: {fileID: 1887358484834266681}
   - component: {fileID: 6396182996624646278}
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3404158003503956308
+--- !u!114 &1173133992891300197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,10 +107,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bfd94346f0816744b5501aca0cfc9df, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyControllerOne
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   state: 0
   xvel: 0
   maxHealth: 100
