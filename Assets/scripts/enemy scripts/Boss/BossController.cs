@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     public int currentHealth;
 
-    [SerializeField] float leftSpeed = 6;
+    [SerializeField] float leftSpeed = -6;
     [SerializeField] float rightSpeed = 6;
 
     [Header("jump values")]
@@ -143,7 +143,7 @@ public class BossController : MonoBehaviour
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-        anim.Play("boss_jump_anim");
+        anim.Play("boss_jumping_anim");
 
         Invoke(nameof(ReturnToMove), 1f);
     }
