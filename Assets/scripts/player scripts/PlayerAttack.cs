@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    /*
+    
     public GameObject attackPoint;
     public float radius;
     Animator anim;
@@ -32,5 +32,5 @@ public class PlayerAttack : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
     }
-    */
+    
 }
