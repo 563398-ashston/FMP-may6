@@ -7,16 +7,21 @@ public class MenuManager : MonoBehaviour
     [Header("Menu Objects")]
     [SerializeField] private GameObject mainMenuCanvasGO;
     [SerializeField] private GameObject settingsCanvasGO;
-    [SerializeField] private GameObject controlCanvasGO;
+    [SerializeField] private GameObject returnToMenuCanvasGo;
+    [SerializeField] private GameObject controllerCanvasGO;
+    [SerializeField] private GameObject keyboardCanvasGO;
 
     [Header("Player Scripts to Deactivate on Pause")]
     [SerializeField] private PlayerController playerCon;
 
 
-
+    [Header("first selected options")]
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
-    [SerializeField] private GameObject controlMenuFirst;
+    [SerializeField] private GameObject returnToMenuFirst;
+    [SerializeField] private GameObject controllerMenuFirst;
+    [SerializeField] private GameObject keyboardMenuFirst;
+    
 
 
 
@@ -27,8 +32,9 @@ public class MenuManager : MonoBehaviour
     {
         mainMenuCanvasGO.SetActive(false);
         settingsCanvasGO.SetActive(false);
-        controlCanvasGO.SetActive(false);
-
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
     }
 
     private void Update()
@@ -69,73 +75,119 @@ public class MenuManager : MonoBehaviour
         CloseAllMenus();
     }
 
-    public void OpenSettingsMenuHandle()
-    {
-        mainMenuCanvasGO.SetActive(false);
-        settingsCanvasGO.SetActive(true);
-        controlCanvasGO.SetActive(false);
-
-
-        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
-    }
-
-
+    //open canvas code
     private void OpenMainMenu()
     {
         mainMenuCanvasGO.SetActive(true);
         settingsCanvasGO.SetActive(false);
-        controlCanvasGO.SetActive(false);
-
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
     }
 
-    private void OpenControlMenu()
+    public void OpenSettingsMenu()
+    {
+        mainMenuCanvasGO.SetActive(false);
+        settingsCanvasGO.SetActive(true);
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+    }
+
+    private void OpenReturnToMenu()
     {
         mainMenuCanvasGO.SetActive(false);
         settingsCanvasGO.SetActive(false);
-        controlCanvasGO.SetActive(true);
+        returnToMenuCanvasGo.SetActive(true);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
 
-
-        EventSystem.current.SetSelectedGameObject(controlMenuFirst);
+        EventSystem.current.SetSelectedGameObject(returnToMenuFirst);
     }
 
+    private void OpenControllerMenu()
+    {
+        mainMenuCanvasGO.SetActive(false);
+        settingsCanvasGO.SetActive(false);
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(true);
+        keyboardCanvasGO.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(controllerMenuFirst);
+    }
+
+    private void OpenKeyboardMenu()
+    {
+        mainMenuCanvasGO.SetActive(false);
+        settingsCanvasGO.SetActive(false);
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(true);
 
 
+        EventSystem.current.SetSelectedGameObject(keyboardMenuFirst);
+    }
 
+    //close canvas code
     private void CloseAllMenus()
     {
         mainMenuCanvasGO.SetActive(false);
         settingsCanvasGO.SetActive(false);
-        controlCanvasGO.SetActive(false);
-
-
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void OnSettingsPress()
     {
-        OpenSettingsMenuHandle();
+        OpenSettingsMenu();
     }
-
-    public void OnResumePress()
-    {
-        Unpause();
-    }
-
     public void OnSettingBackPress()
     {
         OpenMainMenu();
     }
 
-    public void OncontrolPress()
+
+    public void OnreturnToMenuPress()
     {
-        OpenControlMenu();
+        OpenReturnToMenu();
+    }
+    public void OnreturnToMenuBackPress()
+    {
+        OpenMainMenu();
     }
 
-    public void OnControlsBackPress()
+
+    public void OnConrollerMenuPress()
     {
-        OpenSettingsMenuHandle();
+        OpenControllerMenu();
+    }
+
+    public void OnConrollerMenuBackPress()
+    {
+        OpenSettingsMenu();
+    }
+
+
+    public void OnKeyboardMenuPress()
+    {
+        OpenKeyboardMenu();
+    }
+
+    public void OnKeyboardMenuBackPress()
+    {
+        OpenSettingsMenu();
+    }
+
+
+    public void OnResumePress()
+    {
+        Unpause();
     }
 }
