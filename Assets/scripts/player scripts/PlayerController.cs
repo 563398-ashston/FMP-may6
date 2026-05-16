@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    private PlayerInput playerInput;
     public Transform groundCheck;
     public LayerMask groundLayer;
     Animator anim;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        playerInput = GetComponent<PlayerInput>();
         rb.GetComponent<Rigidbody2D>();
     }
 
@@ -76,10 +78,10 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
-        dashAction = InputSystem.actions.FindAction("Dash");
-        attackAction = InputSystem.actions.FindAction("Attack");
+        moveAction = playerInput.actions["Move"];
+        jumpAction = playerInput.actions["Jump"];
+        dashAction = playerInput.actions["Dash"];
+        attackAction = playerInput.actions["Attack"];
 
         jumpsLeft = maxJumps;
         originalGravity = rb.gravityScale;

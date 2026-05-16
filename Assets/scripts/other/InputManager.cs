@@ -7,9 +7,9 @@ public class InputManager : MonoBehaviour
 
     public bool MenuOpenCloseInput {  get; private set; }
 
-    private PlayerInput _playerInput;
+    private PlayerInput playerInput;
 
-    private InputAction _menuOpenCloseAction;
+    private InputAction menuOpenCloseAction;
 
     private void Awake()
     {
@@ -18,12 +18,12 @@ public class InputManager : MonoBehaviour
             instance = this;
         }
 
-        _playerInput = GetComponent<PlayerInput>();
-        _menuOpenCloseAction = _playerInput.actions["MenuOpenClose"];
+        playerInput = GetComponent<PlayerInput>();
+        menuOpenCloseAction = playerInput.actions["MenuOpenClose"];
     }
 
     private void Update()
     {
-        MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
+        MenuOpenCloseInput = menuOpenCloseAction.WasPressedThisFrame();
     }
 }

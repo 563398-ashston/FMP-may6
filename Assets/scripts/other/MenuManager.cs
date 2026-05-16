@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
+    private PlayerInput playerInput;
 
     [Header("Menu Objects")]
     [SerializeField] private GameObject mainMenuCanvasGO;
@@ -10,10 +12,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject returnToMenuCanvasGo;
     [SerializeField] private GameObject controllerCanvasGO;
     [SerializeField] private GameObject keyboardCanvasGO;
+    [SerializeField] private GameObject audioCanvasGO;
 
     [Header("Player Scripts to Deactivate on Pause")]
     [SerializeField] private PlayerController playerCon;
-
 
     [Header("first selected options")]
     [SerializeField] private GameObject mainMenuFirst;
@@ -21,10 +23,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject returnToMenuFirst;
     [SerializeField] private GameObject controllerMenuFirst;
     [SerializeField] private GameObject keyboardMenuFirst;
-    
-
-
-
+    [SerializeField] private GameObject audioCanvasFirst;
 
     private bool ispaused;
 
@@ -35,6 +34,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
     }
 
     private void Update()
@@ -56,6 +56,7 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
+        playerInput.SwitchCurrentActionMap("UI");
         ispaused = true;
         Time.timeScale = 0f;
 
@@ -67,6 +68,7 @@ public class MenuManager : MonoBehaviour
 
     public void Unpause()
     {
+
         ispaused = false;
         Time.timeScale = 1f;
 
@@ -83,6 +85,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
     }
@@ -94,6 +97,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
     }
@@ -105,6 +109,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(true);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(returnToMenuFirst);
     }
@@ -116,6 +121,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(true);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(controllerMenuFirst);
     }
@@ -127,7 +133,19 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(true);
+        audioCanvasGO.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(keyboardMenuFirst);
+    }
+
+    private void OpenAudioMenu()
+    {
+        mainMenuCanvasGO.SetActive(false);
+        settingsCanvasGO.SetActive(false);
+        returnToMenuCanvasGo.SetActive(false);
+        controllerCanvasGO.SetActive(false);
+        keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(keyboardMenuFirst);
     }
@@ -140,6 +158,7 @@ public class MenuManager : MonoBehaviour
         returnToMenuCanvasGo.SetActive(false);
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
+        audioCanvasGO.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -181,6 +200,17 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OnKeyboardMenuBackPress()
+    {
+        OpenSettingsMenu();
+    }
+
+
+    public void OnAudioMenuPress()
+    {
+        OpenAudioMenu();
+    }
+
+    public void OnAudioMenuBackPress()
     {
         OpenSettingsMenu();
     }
