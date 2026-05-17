@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossRockScript
   force: 20
-  damage: 5
+  damage: 10
 --- !u!50 &5920022186449211266
 Rigidbody2D:
   serializedVersion: 5

@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
-    private PlayerInput playerInput;
 
     [Header("Menu Objects")]
     [SerializeField] private GameObject mainMenuCanvasGO;
@@ -56,7 +55,6 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
-        playerInput.SwitchCurrentActionMap("UI");
         ispaused = true;
         Time.timeScale = 0f;
 

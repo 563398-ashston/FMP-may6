@@ -9,7 +9,6 @@ public class HealScript : MonoBehaviour
         if (health != null)
         {
             health.ResetHealth();
-            Debug.Log("Player healed to max health!");
         }
     }
 }

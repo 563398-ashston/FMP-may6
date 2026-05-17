@@ -90,9 +90,6 @@ public class PlayerController : MonoBehaviour
         attackHitbox.enabled = false;
     }
 
-    //private void OnEnable() => dashAction.Enable();
-    //private void OnDisable() => dashAction.Disable();
-
     private void FixedUpdate()
     {
         if (rb.linearVelocity.magnitude > maxVertSpeed)
