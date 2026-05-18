@@ -95,7 +95,7 @@ public class BossController : MonoBehaviour
 
 
         float bossDistance = Vector2.Distance(transform.position, player.transform.position);
-        Debug.Log(bossDistance);
+        //Debug.Log(bossDistance);
 
         if(bossDistance < 29)
         {
