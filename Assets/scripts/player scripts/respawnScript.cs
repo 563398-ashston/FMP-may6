@@ -11,7 +11,7 @@ public class respawnScript : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().resetPoint = resetPoint;
             //collision.gameObject.GetComponent<HealthScript>().ResetHealth();
 
-            print("reset point is " + resetPoint);
+            
         }
     }
 }

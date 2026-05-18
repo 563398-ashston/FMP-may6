@@ -9,12 +9,6 @@ public class HealthScript : MonoBehaviour
     public int maxHealth = 100;
     public Slider slider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-
-    }
-
     private void Start()
     {
         health = maxHealth;

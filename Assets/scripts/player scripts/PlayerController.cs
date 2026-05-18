@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public GameObject slashEffect;
     public bool isAttacking;
 
+
     public LayerMask enemyLayers;
 
     public PolygonCollider2D attackHitbox;
@@ -71,6 +72,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+
+        print("playerinput=" + playerInput);
         rb.GetComponent<Rigidbody2D>();
     }
 
@@ -78,10 +81,35 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        moveAction = playerInput.actions["Move"];
-        jumpAction = playerInput.actions["Jump"];
-        dashAction = playerInput.actions["Dash"];
-        attackAction = playerInput.actions["Attack"];
+        //moveAction = playerInput.actions["Move"];
+        //jumpAction = playerInput.actions["Jump"];
+        //dashAction = playerInput.actions["Dash"];
+        //attackAction = playerInput.actions["Attack"];
+
+
+        moveAction = InputSystem.actions.FindAction("Move");
+        if( moveAction == null )
+        {
+            print("move not found");
+        }
+
+        jumpAction = InputSystem.actions.FindAction("Jump");
+        if (jumpAction == null)
+        {
+            print("jump not found");
+        }
+
+        dashAction = InputSystem.actions.FindAction("Dash");
+        if (dashAction == null)
+        {
+            print("dash not found");
+        }
+
+        attackAction = InputSystem.actions.FindAction("Attack");
+        if (attackAction == null)
+        {
+            print("attack not found");
+        }
 
         jumpsLeft = maxJumps;
         originalGravity = rb.gravityScale;
@@ -119,6 +147,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //print("move=" + moveAction.ReadValue<Vector2>());
+
         if (isAttacking)
         {
             attackTimer -= Time.deltaTime;
@@ -236,6 +266,8 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
 
         attackTimer = attackDuration;
+
+        AudioManager.instance.PlaySFX("weapon swing SFX");
 
         StartCoroutine(ShowSlash());
         StartCoroutine(EnableAttackHitbox());

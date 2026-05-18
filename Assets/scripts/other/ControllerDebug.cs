@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ControllerDebug : MonoBehaviour
 {
+    /*
     void Update()
     {
         if (Gamepad.current != null)
@@ -21,4 +22,5 @@ public class ControllerDebug : MonoBehaviour
             Debug.Log("No Controller");
         }
     }
+    */
 }
