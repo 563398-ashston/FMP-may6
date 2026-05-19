@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -220,9 +221,15 @@ public class MenuManager : MonoBehaviour
     {
         Unpause();
     }
+
+
     public void MuteMusic(bool mute)
     {
         AudioManager.instance.musicMute = mute;
         //print("music mute=" + AudioManager.instance.musicMute);
+    }
+    public void QuitToFrontend()
+    {
+        SceneManager.LoadScene("Frontend");
     }
 }
