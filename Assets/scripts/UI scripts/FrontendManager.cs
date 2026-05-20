@@ -30,6 +30,8 @@ public class FrontendManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlayMusic("frontend music");
+
         frontendCanvasGO.SetActive(true);
         settingsCanvasGO.SetActive(false);
         returnToOsCanvasGo.SetActive(false);

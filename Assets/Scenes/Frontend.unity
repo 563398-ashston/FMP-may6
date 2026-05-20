@@ -895,7 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicVolume: 1
   sfxVolume: 1
-  masterVolume: 0
+  masterVolume: 1
   sounds:
   - name: weapon swing SFX
     clip: {fileID: 8300000, guid: 9681be03f4f5b094fa7bdb67e9c46420, type: 3}
@@ -904,8 +904,15 @@ MonoBehaviour:
     source: {fileID: 0}
     mixerGroup: {fileID: -3515922143646425312, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
     loop: 0
+  - name: frontend music
+    clip: {fileID: 8300000, guid: 6afeebf44977acd4590dcb471bfbf928, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: -5977454195251145094, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
+    loop: 1
   - name: background music
-    clip: {fileID: 8300000, guid: fef476258641060449ebfb138f335421, type: 3}
+    clip: {fileID: 8300000, guid: 6b08ccefe2c8c5e4fb69ec0c3d5d92df, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

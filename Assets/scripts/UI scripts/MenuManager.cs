@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
     [Header("Menu Objects")]
     [SerializeField] private GameObject mainMenuCanvasGO;
     [SerializeField] private GameObject settingsCanvasGO;
@@ -29,6 +28,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.PlayMusic("background music");
+
         mainMenuCanvasGO.SetActive(false);
         settingsCanvasGO.SetActive(false);
         returnToMenuCanvasGo.SetActive(false);

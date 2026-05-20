@@ -11,6 +11,8 @@ public class BossController : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] public float xvel;
     public GameObject attackTarget;
+    public BossRoomDoors Door1;
+    public BossRoomDoors Door2;
 
     [Header("boss health")]
     [SerializeField] private int maxHealth = 100;
@@ -196,6 +198,9 @@ public class BossController : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         rb.linearVelocity = Vector2.zero;
+
+        Door1.OpenDoor();
+        Door2.OpenDoor();
 
         // destroy after animation
         Destroy(gameObject, 1.15f);

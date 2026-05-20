@@ -12,6 +12,7 @@ TagManager:
   - enemy4
   - boss
   - Target
+  - Chest
   layers:
   - Default
   - TransparentFX

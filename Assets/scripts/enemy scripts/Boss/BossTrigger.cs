@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class BossTrigger : MonoBehaviour
 {
+    public Animator doorAnimator;
+
     public GameObject boss;
+    public BossRoomDoors Door1;
+    public BossRoomDoors Door2;
 
     private bool activated = false;
 
@@ -13,6 +17,9 @@ public class BossTrigger : MonoBehaviour
             activated = true;
 
             boss.SetActive(true);
+
+            Door1.CloseDoor();
+            Door2.CloseDoor();
         }
     }
 }

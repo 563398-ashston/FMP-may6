@@ -8,6 +8,8 @@ public class HealthScript : MonoBehaviour
     public int health;
     public int maxHealth = 100;
     public Slider slider;
+    
+    public GameObject gameOverCanvas;
 
     private void Start()
     {
@@ -31,9 +33,15 @@ public class HealthScript : MonoBehaviour
         
         if (health <= 0)
         {
-            Destroy(gameObject, 0f);
+            Die();
         }
         
+    }
+    public void Die()
+    {
+        gameOverCanvas.SetActive(true);
+
+        Destroy(gameObject, 0f);
     }
 
     public void ResetHealth()

@@ -14,7 +14,7 @@ public class VolumeSettings : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AudioManager.instance.PlayMusic("background music");
+        //AudioManager.instance.PlayMusic("background music");
 
         //read the bool for the mute button
         if (PlayerPrefs.GetInt("mute") == 0)
