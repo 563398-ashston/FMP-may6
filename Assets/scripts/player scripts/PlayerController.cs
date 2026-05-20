@@ -166,7 +166,11 @@ public class PlayerController : MonoBehaviour
         if (attackAction.WasPressedThisFrame() && Time.time >= nextAttackTime)
         {
             nextAttackTime = Time.time + attackCooldown;
-            Attack();
+            isAttacking = true;
+            attackTimer = attackDuration;
+            //Attack();
+            //att
+
         }
 
         FlipCheck();
@@ -259,13 +263,15 @@ public class PlayerController : MonoBehaviour
         horizontal = moveAction.ReadValue<Vector2>().x;
 
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+
+        //AudioManager.instance.PlaySFX("player walking sfx");
     }
 
     public void Attack()
     {
-        isAttacking = true;
+        //isAttacking = true;
 
-        attackTimer = attackDuration;
+        //attackTimer = attackDuration;
 
         AudioManager.instance.PlaySFX("weapon swing SFX");
 

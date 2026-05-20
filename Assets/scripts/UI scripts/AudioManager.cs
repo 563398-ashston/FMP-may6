@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
@@ -12,8 +13,19 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public float musicVolume, sfxVolume, masterVolume;
     public Sound[] sounds;
+    private string currentMusic;
 
     public bool musicMute;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void Awake()
     {
@@ -123,5 +135,52 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.volume = vol;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "MainMenu":
+                SwitchMusic("MenuMusic");
+                break;
+
+            case "Level1":
+                SwitchMusic("LevelMusic");
+                break;
+
+            case "BossFight":
+                SwitchMusic("BossMusic");
+                break;
+        }
+    }
+    public void SwitchMusic(string name)
+    {
+        // Don't restart same song
+        if (currentMusic == name)
+            return;
+
+        // Stop previous music
+        if (!string.IsNullOrEmpty(currentMusic))
+        {
+            Sound oldSound = Array.Find(sounds, s => s.name == currentMusic);
+
+            if (oldSound != null)
+                oldSound.source.Stop();
+        }
+
+        // Find new sound
+        Sound newSound = Array.Find(sounds, s => s.name == name);
+
+        if (newSound == null)
+        {
+            Debug.LogWarning("Music: " + name + " not found!");
+            return;
+        }
+
+        currentMusic = name;
+
+        newSound.source.volume = musicVolume;
+        newSound.source.Play();
     }
 }

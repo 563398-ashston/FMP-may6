@@ -904,20 +904,34 @@ MonoBehaviour:
     source: {fileID: 0}
     mixerGroup: {fileID: -3515922143646425312, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
     loop: 0
-  - name: frontend music
+  - name: MainMenu
     clip: {fileID: 8300000, guid: 6afeebf44977acd4590dcb471bfbf928, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     mixerGroup: {fileID: -5977454195251145094, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
     loop: 1
-  - name: background music
+  - name: Level1
     clip: {fileID: 8300000, guid: 6b08ccefe2c8c5e4fb69ec0c3d5d92df, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     mixerGroup: {fileID: -5977454195251145094, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
     loop: 1
+  - name: buttonsfx
+    clip: {fileID: 8300000, guid: 2042d9a04a62fec4588883ce1b099028, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: -3515922143646425312, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
+    loop: 0
+  - name: 'player walking sfx '
+    clip: {fileID: 8300000, guid: 28413c1bf5916d345a009c306cce8db2, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: -3515922143646425312, guid: cef64193d62e1324d8a17099fcb802db, type: 2}
+    loop: 0
   musicMute: 0
 --- !u!4 &209036950
 Transform:
@@ -1508,6 +1522,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &496348064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,6 +1804,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &505455092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,6 +2073,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnreturnToOsPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2331,6 +2381,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &621718180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,6 +2654,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnGamepadMenuBackPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4285,6 +4359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1093349844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4418,6 +4504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1145641611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4538,7 +4636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1147888455
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4691,6 +4789,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnHowToPlayMenuBackPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5501,7 +5611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1281442345
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5794,6 +5904,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: MuteMusic
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6102,6 +6224,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnreturnToOsBackPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6456,6 +6590,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1558131642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6580,6 +6726,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnAudioMenuPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7659,6 +7817,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1909686054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8464,6 +8634,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711609127}
         m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
         m_MethodName: OnKeyboardMenuPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 711609127}
+        m_TargetAssemblyTypeName: FrontendManager, Assembly-CSharp
+        m_MethodName: playButtonSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

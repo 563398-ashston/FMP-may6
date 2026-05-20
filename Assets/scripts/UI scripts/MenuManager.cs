@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlayMusic("background music");
+        //AudioManager.instance.PlayMusic("background music");
 
         mainMenuCanvasGO.SetActive(false);
         settingsCanvasGO.SetActive(false);
@@ -36,6 +36,8 @@ public class MenuManager : MonoBehaviour
         controllerCanvasGO.SetActive(false);
         keyboardCanvasGO.SetActive(false);
         audioCanvasGO.SetActive(false);
+
+        Time.timeScale = 1.0f;
     }
 
     private void Update()
@@ -229,6 +231,12 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.musicMute = mute;
         //print("music mute=" + AudioManager.instance.musicMute);
     }
+
+    public void playButtonSFX()
+    {
+        AudioManager.instance.PlaySFX("buttonsfx");
+    }
+
     public void QuitToFrontend()
     {
         SceneManager.LoadScene("Frontend");

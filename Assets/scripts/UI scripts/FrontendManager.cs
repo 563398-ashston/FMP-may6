@@ -30,7 +30,7 @@ public class FrontendManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlayMusic("frontend music");
+        AudioManager.instance.PlayMusic("MainMenu");
 
         frontendCanvasGO.SetActive(true);
         settingsCanvasGO.SetActive(false);
@@ -43,6 +43,7 @@ public class FrontendManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (InputManager.instance.MenuOpenCloseInput)
         {
             if (!ispaused)
@@ -55,9 +56,10 @@ public class FrontendManager : MonoBehaviour
             }
 
         }
+        */
     }
 
-
+    /*
     public void Pause()
     {
         ispaused = true;
@@ -79,6 +81,7 @@ public class FrontendManager : MonoBehaviour
 
         CloseAllMenus();
     }
+    */
 
     //open canvas code
     private void OpenFrontend()
@@ -251,7 +254,7 @@ public class FrontendManager : MonoBehaviour
 
     public void OnResumePress()
     {
-        Unpause();
+        //Unpause();
     }
 
 
@@ -267,6 +270,10 @@ public class FrontendManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void playButtonSFX()
+    {
+        AudioManager.instance.PlaySFX("buttonsfx");
     }
 
 }
